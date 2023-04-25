@@ -3,5 +3,13 @@
 </template>
 
 <script lang="ts">
-  console.log('test')
+  import { defineComponent } from 'vue'
+
+  export default defineComponent({
+    setup() {
+      const version = 2 + 1
+
+      return { version: version }
+    }
+  })
 </script>

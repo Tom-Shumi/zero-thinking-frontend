@@ -4,19 +4,23 @@ module.exports = {
     node: true
   },
   extends: [
-    'plugin:vue/vue3-recommended',
+    'plugin:vue/base',
     'eslint:recommended',
-    '@nuxtjs/eslint-config-typescript',
-    '@vue/prettier'
+    'plugin:vue/vue3-recommended',
+    'plugin:vue/essential',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended',
+    'eslint-config-prettier'
   ],
   overrides: [],
-  parser: '@typescript-eslint/parser',
+  parser: 'vue-eslint-parser',
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module'
   },
   plugins: ['vue', '@typescript-eslint'],
   rules: {
-    'vue/no-v-model-argument': 0
+    'vue/no-v-model-argument': 0,
+    'vue/multi-word-component-names': 'off'
   }
 }
