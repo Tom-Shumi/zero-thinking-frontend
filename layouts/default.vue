@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav>header</nav>
+    <nav><h1 class="text-3xl font-bold underline">ゼロ秒思考</h1></nav>
     <slot />
   </div>
 </template>
