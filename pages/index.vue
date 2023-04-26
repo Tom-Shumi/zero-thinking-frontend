@@ -1,19 +1,20 @@
 <template>
-  <div>
-    <span class="text-3xl font-bold text-center">すぐ始める</span>
-    <PrimaryButton label="START" :on-click="handleClick"></PrimaryButton>
+  <div class="text-center">
+    <div class="text-3xl font-bold my-5">すぐ始める</div>
+    <div class="my-5">
+      <PrimaryButton label="START" :on-click="handleClick" />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-  import { defineComponent } from 'vue'
   import PrimaryButton from '~/components/atoms/buttons/PrimaryButton.vue'
 
   export default defineComponent({
     components: { PrimaryButton },
     setup() {
       const handleClick = () => {
-        console.log('Button clicked!')
+        return navigateTo('/thinking')
       }
 
       return {

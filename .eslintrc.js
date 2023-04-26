@@ -10,7 +10,8 @@ module.exports = {
     'plugin:vue/essential',
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
-    'eslint-config-prettier'
+    'eslint-config-prettier',
+    './.nuxt/.eslintrc.js'
   ],
   overrides: [],
   parser: 'vue-eslint-parser',

@@ -1,6 +1,8 @@
 <template>
   <div>
-    <nav><h1 class="text-3xl font-bold underline">ゼロ秒思考</h1></nav>
+    <nav class="border-b-2">
+      <h1 class="text-3xl font-bold underline m-5">ゼロ秒思考</h1>
+    </nav>
     <slot />
   </div>
 </template>
