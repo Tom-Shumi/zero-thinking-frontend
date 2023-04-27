@@ -1,5 +1,9 @@
 <template>
-  <DefaultButton :label="label" :on-click="onClick" />
+  <DefaultButton
+    :label="label"
+    :on-click="onClick"
+    buttonClass="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded"
+  />
 </template>
 
 <script lang="ts">
