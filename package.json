@@ -22,6 +22,8 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
-    "@nuxtjs/tailwindcss": "^6.6.6"
+    "@nuxtjs/tailwindcss": "^6.6.6",
+    "easymde": "^2.18.0",
+    "vue-easymde": "^2.0.0"
   }
 }
