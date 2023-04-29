@@ -1,11 +1,13 @@
 <template>
   <div class="text-2xl">
-    <nav class="border-b-2">
+    <nav class="border-b-2 h-20">
       <nuxt-link to="/">
-        <span class="text-3xl font-bold underline m-5">ゼロ秒思考</span>
+        <span class="text-3xl font-bold underline m-5 float-left"
+          >ゼロ秒思考</span
+        >
       </nuxt-link>
       <SecondaryButton
-        class="m-5"
+        class="m-5 float-right"
         label="MY PAGE"
         :on-click="handleMoveMypage"
       />
