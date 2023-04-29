@@ -2,7 +2,7 @@
   <div class="text-center">
     <div class="text-3xl font-bold my-5">すぐ始める</div>
     <div class="my-5">
-      <PrimaryButton label="START" :on-click="handleClick" />
+      <PrimaryButton class="mx-5" label="START" :on-click="handleStart" />
     </div>
   </div>
 </template>
@@ -12,13 +12,12 @@
 
   export default defineComponent({
     components: { PrimaryButton },
-    setup() {
-      const handleClick = () => {
+    methods: {
+      handleStart() {
         return navigateTo('/thinking')
-      }
-
-      return {
-        handleClick
+      },
+      handleMoveMypage() {
+        return navigateTo('/mypage')
       }
     }
   })

@@ -3,5 +3,8 @@ export default defineNuxtConfig({
     plugins: { tailwindcss: {} }
   },
   css: ['~/assets/css/tailwind.css', 'easymde/dist/easymde.min.css'],
-  modules: ['@nuxtjs/tailwindcss']
+  modules: ['@nuxtjs/tailwindcss', '@nuxt/devtools'],
+  devtools: {
+    enabled: true
+  }
 })

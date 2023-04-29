@@ -2,13 +2,27 @@
   <div class="text-2xl">
     <nav class="border-b-2">
       <nuxt-link to="/">
-        <h1 class="text-3xl font-bold underline m-5">ゼロ秒思考</h1>
+        <span class="text-3xl font-bold underline m-5">ゼロ秒思考</span>
       </nuxt-link>
+      <SecondaryButton
+        class="m-5"
+        label="MY PAGE"
+        :on-click="handleMoveMypage"
+      />
     </nav>
     <slot />
   </div>
 </template>
 
 <script lang="ts">
-  console.log('loaded')
+  import SecondaryButton from '~/components/atoms/buttons/SecondaryButton.vue'
+
+  export default defineComponent({
+    components: { SecondaryButton },
+    methods: {
+      handleMoveMypage() {
+        return navigateTo('/mypage')
+      }
+    }
+  })
 </script>

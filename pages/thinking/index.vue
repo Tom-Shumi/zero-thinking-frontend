@@ -30,7 +30,7 @@
     <label for="thinkingTree">深掘り</label>
     <div class="mb-8">
       <textarea class="border w-4/5"></textarea>
-      <!-- <vue-easymde v-model="thinkingTree" /> -->
+      <vue-easymde v-model="thinkingTree" />
     </div>
   </div>
 </template>
@@ -39,12 +39,12 @@
   import PrimaryButton from '~/components/atoms/buttons/PrimaryButton.vue'
   import SecondaryButton from '~/components/atoms/buttons/SecondaryButton.vue'
   import GrayButton from '~/components/atoms/buttons/GrayButton.vue'
-  // import VueEasymde from 'vue-easymde'
+  import VueEasymde from 'vue-easymde'
 
   const THINKING_TIME = 5
 
   export default defineComponent({
-    components: { PrimaryButton, SecondaryButton, GrayButton },
+    components: { PrimaryButton, SecondaryButton, GrayButton, VueEasymde },
     data() {
       return {
         remainingTime: THINKING_TIME,
