@@ -27,10 +27,13 @@
     <hr class="w-full" />
   </div>
   <div class="mt-5 ml-20">
-    <label for="thinkingTree">深掘り</label>
-    <div class="mb-8">
-      <textarea class="border w-4/5"></textarea>
-      <vue-easymde v-model="thinkingTree" />
+    <label for="thinkingTree">深掘り【マークダウン記法】</label>
+    <div class="mr-20">
+      <MdEditor
+        v-model="thinkingTree"
+        language="en-US"
+        :disabled="!isTimerOn"
+      />
     </div>
   </div>
 </template>
@@ -39,12 +42,13 @@
   import PrimaryButton from '~/components/atoms/buttons/PrimaryButton.vue'
   import SecondaryButton from '~/components/atoms/buttons/SecondaryButton.vue'
   import GrayButton from '~/components/atoms/buttons/GrayButton.vue'
-  import VueEasymde from 'vue-easymde'
+  import MdEditor from 'md-editor-v3'
+  import 'md-editor-v3/lib/style.css'
 
   const THINKING_TIME = 5
 
   export default defineComponent({
-    components: { PrimaryButton, SecondaryButton, GrayButton, VueEasymde },
+    components: { PrimaryButton, SecondaryButton, GrayButton, MdEditor },
     data() {
       return {
         remainingTime: THINKING_TIME,
@@ -73,17 +77,29 @@
       },
       handleReset() {
         this.handleStop()
-        this.remainingTime = THINKING_TIME
+        this.init()
       },
       countDown() {
         this.remainingTime = this.remainingTime - 1
+      },
+      init() {
+        this.remainingTime = THINKING_TIME
+        this.theme = ''
+        this.thinkingTree = ''
       }
     },
     watch: {
-      remainingTime(newVal, _) {
-        if (newVal == 0) {
+      remainingTime(_, oldVal) {
+        if (oldVal == 0) {
           this.handleStop()
-          alert('時間切れです！')
+          if (confirm('時間切れです！\n\nテーマ & 深掘りを登録しますか？')) {
+            alert('登録が完了しました！')
+          } else if (confirm('本当に登録しないで良いですか？')) {
+            alert('登録せずに終了しました！')
+          } else {
+            alert('登録が完了しました！')
+          }
+          this.init()
         }
       }
     }

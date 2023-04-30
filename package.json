@@ -24,7 +24,6 @@
   "dependencies": {
     "@nuxt/devtools": "^0.4.2",
     "@nuxtjs/tailwindcss": "^6.6.6",
-    "easymde": "^2.18.0",
-    "vue-easymde": "^2.0.0"
+    "md-editor-v3": "^3.0.0"
   }
 }
