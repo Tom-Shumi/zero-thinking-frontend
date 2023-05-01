@@ -2,7 +2,7 @@
   <div class="text-center">
     <div class="text-3xl font-bold my-5">すぐ始める</div>
     <div class="my-5">
-      <PrimaryButton class="mx-5" label="START" :on-click="handleStart" />
+      <PrimaryButton class="mx-5" label="スタート" :on-click="handleStart" />
     </div>
   </div>
 </template>
@@ -15,9 +15,6 @@
     methods: {
       handleStart() {
         return navigateTo('/thinking')
-      },
-      handleMoveMypage() {
-        return navigateTo('/mypage')
       }
     }
   })
