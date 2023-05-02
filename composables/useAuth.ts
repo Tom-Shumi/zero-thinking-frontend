@@ -2,30 +2,38 @@ import {
   getAuth,
   signInWithEmailAndPassword,
   signOut as firebaseSignOut,
-  onAuthStateChanged
+  onAuthStateChanged,
+  createUserWithEmailAndPassword
 } from 'firebase/auth'
 
 export const useAuth = () => {
   const token = useState<string | null>('token', () => null)
 
-  async function signIn(email: string, password: string) {
-    return await new Promise<void>((resolve, reject) => {
-      const auth = getAuth()
-      return signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          userCredential.user
-            .getIdToken()
-            .then((idToken) => {
-              token.value = idToken
-              resolve()
-            })
-            .catch(reject)
-        })
-        .catch(reject)
-    })
+  function signup(email: string, password: string) {
+    const auth = getAuth()
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(async (userCredential) => {
+        token.value == (await userCredential.user.getIdToken())
+        navigateTo('/')
+      })
+      .catch((error) => {
+        alert(error.message) // TODO エラーメッセージの変更(firebaseというワードを消す)
+      })
   }
 
-  async function signOut() {
+  function login(email: string, password: string) {
+    const auth = getAuth()
+    signInWithEmailAndPassword(auth, email, password)
+      .then(async (userCredential) => {
+        token.value == (await userCredential.user.getIdToken())
+        navigateTo('/')
+      })
+      .catch((error) => {
+        alert(error.message) // TODO エラーメッセージの変更(firebaseというワードを消す)
+      })
+  }
+
+  async function logout() {
     return await new Promise<void>((resolve, reject) => {
       const auth = getAuth()
       firebaseSignOut(auth)
@@ -73,8 +81,9 @@ export const useAuth = () => {
   }
 
   return {
-    signIn,
-    signOut,
+    signup,
+    login,
+    logout,
     token,
     checkAuthState,
     isLogin

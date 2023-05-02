@@ -6,23 +6,29 @@
           >ゼロ秒思考</span
         >
       </nuxt-link>
-      <SecondaryButton
+      <PrimaryButton
         class="m-5 float-right"
         label="マイページ"
         :on-click="handleMoveMypage"
-        v-if="isShowMyPageButton"
+        v-if="isShowLoginedButton"
       />
       <SecondaryButton
         class="m-5 float-right"
-        label="ログイン"
-        :on-click="handleMoveLogin"
-        v-if="!isShowMyPageButton"
+        label="ログアウト"
+        :on-click="handleLogout"
+        v-if="isShowLoginedButton"
       />
       <PrimaryButton
         class="m-5 float-right"
+        label="ログイン"
+        :on-click="handleMoveLogin"
+        v-if="!isShowLoginedButton"
+      />
+      <SecondaryButton
+        class="m-5 float-right"
         label="ユーザ登録"
         :on-click="handleMoveSignUp"
-        v-if="!isShowMyPageButton"
+        v-if="!isShowLoginedButton"
       />
     </nav>
     <slot />
@@ -32,12 +38,18 @@
 <script setup lang="ts">
   import { ref } from 'vue'
 
-  const { isLogin } = useAuth()
-  const isShowMyPageButton = ref(await isLogin())
+  const isShowLoginedButton = ref(false)
+  const setIsLogin = async () => {
+    const { isLogin } = useAuth()
+    isShowLoginedButton.value = await isLogin()
+  }
+
+  onMounted(async () => {
+    setIsLogin()
+  })
 
   onUpdated(async () => {
-    const { isLogin } = useAuth()
-    isShowMyPageButton.value = await isLogin()
+    setIsLogin()
   })
 </script>
 
@@ -59,6 +71,14 @@
       },
       handleMoveSignUp() {
         return navigateTo('/signup')
+      },
+      async handleLogout() {
+        if (confirm('ログアウトしますか？')) {
+          const { logout } = useAuth()
+          await logout()
+          location.reload()
+          return navigateTo('/')
+        }
       }
     }
   })
