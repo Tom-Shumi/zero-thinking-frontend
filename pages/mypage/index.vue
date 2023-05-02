@@ -6,4 +6,7 @@
 
 <script lang="ts">
   export default defineComponent({})
+  definePageMeta({
+    middleware: 'auth'
+  })
 </script>
