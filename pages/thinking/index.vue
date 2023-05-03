@@ -91,10 +91,14 @@
         this.handleStop()
         if (confirm('時間切れです！\n\nテーマ & 深掘りを登録しますか？')) {
           alert('登録が完了しました！')
-        } else if (confirm('本当に登録しないで良いですか？')) {
-          alert('登録せずに終了しました！')
-        } else {
+        } else if (
+          confirm(
+            'このままでは、内容は消えてしまいます。\n\n本当はテーマ & 深掘りを登録しますか？'
+          )
+        ) {
           alert('登録が完了しました！')
+        } else {
+          alert('登録せずに終了しました！')
         }
         this.init()
       }
