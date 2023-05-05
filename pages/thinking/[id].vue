@@ -5,8 +5,12 @@
   <div class="ml-20 text-2xl font-bold underline">
     {{ thinkingTree.theme }}
   </div>
-  <div class="ml-20 mt-5">
-    {{ thinkingTree.thinking_tree }}
+  <div class="ml-20 mt-5 pl-5">
+    <MdEditor
+      :modelValue="thinkingTree.thinking_tree"
+      language="en-US"
+      :previewOnly="true"
+    />
   </div>
 </template>
 
@@ -17,8 +21,12 @@
   const { data: response } = await fetch(`/v1/thinkingTree/${id}`)
   const thinkingTree = response.value.result
 </script>
+
 <script lang="ts">
-  export default defineComponent({})
+  import MdEditor from 'md-editor-v3'
+  export default defineComponent({
+    components: { MdEditor }
+  })
   definePageMeta({
     middleware: 'auth'
   })
