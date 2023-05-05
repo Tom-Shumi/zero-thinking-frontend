@@ -45,7 +45,7 @@
   import MdEditor from 'md-editor-v3'
   import 'md-editor-v3/lib/style.css'
 
-  const THINKING_TIME = 60
+  const THINKING_TIME = 3
 
   export default defineComponent({
     components: { PrimaryButton, SecondaryButton, GrayButton, MdEditor },
@@ -89,6 +89,21 @@
       },
       async timeup() {
         this.handleStop()
+
+        const { isLogin } = useAuth()
+        if (!(await isLogin())) {
+          if (
+            confirm(
+              'ログイン or 会員登録をしていないので、\n内容を登録できません。\n\nログイン画面に遷移しますか？'
+            )
+          ) {
+            return navigateTo('/login')
+          } else {
+            this.init()
+            return
+          }
+        }
+
         if (confirm('時間切れです！\n\nテーマ & 深掘りを登録しますか？')) {
           await this.saveThinkingTree()
           alert('登録が完了しました！')
