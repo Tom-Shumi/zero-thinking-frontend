@@ -45,7 +45,7 @@
   import MdEditor from 'md-editor-v3'
   import 'md-editor-v3/lib/style.css'
 
-  const THINKING_TIME = 5
+  const THINKING_TIME = 60
 
   export default defineComponent({
     components: { PrimaryButton, SecondaryButton, GrayButton, MdEditor },
@@ -87,20 +87,29 @@
         this.theme = ''
         this.thinkingTree = ''
       },
-      timeup() {
+      async timeup() {
         this.handleStop()
         if (confirm('時間切れです！\n\nテーマ & 深掘りを登録しますか？')) {
+          await this.saveThinkingTree()
           alert('登録が完了しました！')
         } else if (
           confirm(
             'このままでは、内容は消えてしまいます。\n\n本当はテーマ & 深掘りを登録しますか？'
           )
         ) {
+          await this.saveThinkingTree()
           alert('登録が完了しました！')
         } else {
           alert('登録せずに終了しました！')
         }
         this.init()
+      },
+      async saveThinkingTree() {
+        const { post } = useClient()
+        await post(`/v1/thinkingTree`, {
+          theme: this.theme,
+          thinkingTree: this.thinkingTree
+        })
       }
     },
     watch: {

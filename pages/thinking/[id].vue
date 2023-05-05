@@ -3,7 +3,7 @@
     {{ thinkingTree.insert_date.slice(0, 10) }}
   </div>
   <div class="ml-20 text-2xl font-bold underline">
-    {{ thinkingTree.title }}
+    {{ thinkingTree.theme }}
   </div>
   <div class="ml-20 mt-5">
     {{ thinkingTree.thinking_tree }}

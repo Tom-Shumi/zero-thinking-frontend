@@ -10,7 +10,7 @@
         <div class="ml-10 mt-5 text-gray-500 text-lg">
           {{ thinkingTree.insert_date.slice(0, 10) }}
         </div>
-        <div class="ml-10">{{ thinkingTree.title }}</div>
+        <div class="ml-10">{{ thinkingTree.theme }}</div>
       </nuxt-link>
     </article>
   </div>
