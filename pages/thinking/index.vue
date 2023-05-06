@@ -28,7 +28,7 @@
   </div>
   <div class="mt-5 ml-20">
     <label for="thinkingTree">深掘り【マークダウン記法】</label>
-    <div class="mr-20">
+    <div class="mr-20 mb-10">
       <MdEditor
         v-model="thinkingTree"
         language="en-US"
@@ -45,7 +45,7 @@
   import MdEditor from 'md-editor-v3'
   import 'md-editor-v3/lib/style.css'
 
-  const THINKING_TIME = 3
+  const THINKING_TIME = 60
 
   export default defineComponent({
     components: { PrimaryButton, SecondaryButton, GrayButton, MdEditor },
