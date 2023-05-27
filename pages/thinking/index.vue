@@ -45,7 +45,7 @@
   import MdEditor from 'md-editor-v3'
   import 'md-editor-v3/lib/style.css'
 
-  const THINKING_TIME = 60
+  const THINKING_TIME = 900
 
   export default defineComponent({
     components: { PrimaryButton, SecondaryButton, GrayButton, MdEditor },
