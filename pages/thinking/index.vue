@@ -36,6 +36,14 @@
       />
     </div>
   </div>
+  <div>
+    <PrimaryButton
+      class="m-5"
+      label="登録"
+      :on-click="handleSave"
+      v-show="!isTimerOn"
+    />
+  </div>
 </template>
 
 <script lang="ts">
@@ -65,7 +73,6 @@
           return
         }
         const self = this
-        this.remainingTime = THINKING_TIME
         this.timerObj = setInterval(function () {
           self.countDown()
         }, 1000)
@@ -77,6 +84,17 @@
       },
       handleReset() {
         this.handleStop()
+        this.init()
+      },
+      async handleSave() {
+        if (this.theme == '' || this.thinkingTree == '') {
+          alert('テーマ & 深掘りが入力されていません')
+          return
+        }
+        if (confirm('テーマ & 深掘りを登録しますか？')) {
+          await this.saveThinkingTree()
+          alert('登録が完了しました！')
+        }
         this.init()
       },
       countDown() {
